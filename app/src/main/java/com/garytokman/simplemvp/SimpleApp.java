@@ -9,6 +9,8 @@ import timber.log.Timber;
 
 public class SimpleApp extends Application {
 
+    private AppComponent mComponent;
+
     @Override
     public void onCreate() {
         super.onCreate();
@@ -18,5 +20,11 @@ public class SimpleApp extends Application {
         }
 
         Timber.i("Created the app!");
+
+        mComponent = DaggerAppComponent.builder().appModule(new AppModule()).build();
+    }
+
+    public AppComponent getComponent() {
+        return mComponent;
     }
 }

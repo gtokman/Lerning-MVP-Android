@@ -3,6 +3,8 @@ package com.garytokman.simplemvp;
 // 11/25/16
 // SimpleMVP
 
+import com.garytokman.simplemvp.presenter.UserPresenter;
+import com.garytokman.simplemvp.presenter.UserPresenterImpl;
 import com.garytokman.simplemvp.repo.InMemoryUserRepoImp;
 import com.garytokman.simplemvp.repo.UserRepository;
 
@@ -16,5 +18,10 @@ public class AppModule {
     @Provides @Singleton
     public UserRepository provideUserRepository() {
         return new InMemoryUserRepoImp();
+    }
+
+    @Provides
+    public UserPresenter provideUserPresenter(UserRepository userRepository) {
+        return new UserPresenterImpl(userRepository);
     }
 }
